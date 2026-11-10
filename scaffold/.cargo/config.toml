@@ -1,0 +1,8 @@
+# 固定 GNU 目标：不依赖 MSVC 链接器与 CRT，
+# rustup 的 GNU 工具链自带 mingw 链接器与运行库，产物完全自包含。
+[build]
+target = "x86_64-pc-windows-gnu"
+
+[target.x86_64-pc-windows-gnu]
+# 静态 CRT + 自带链接器：exe 不依赖任何 VC++ / mingw 运行库，也不需要外部 gcc
+rustflags = ["-C", "target-feature=+crt-static", "-C", "link-self-contained=yes"]

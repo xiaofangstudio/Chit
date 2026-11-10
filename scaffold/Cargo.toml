@@ -1,0 +1,36 @@
+[package]
+name = "chit"
+version = "0.1.0"
+edition = "2021"
+description = "Chit - 小方工作室极简纯文本编辑器"
+authors = ["小方工作室"]
+license = "MIT"
+
+# 零依赖声明之外唯一的外部引用是 windows-rs（纯 Win32 API 绑定，无运行时、无 C 代码）
+[dependencies]
+windows = { version = "0.58", features = [
+    "Win32_Foundation",
+    "Win32_Globalization",
+    "Win32_Graphics_Dwm",
+    "Win32_Graphics_Gdi",
+    "Win32_Security",
+    "Win32_System_DataExchange",
+    "Win32_System_LibraryLoader",
+    "Win32_System_Memory",
+    "Win32_System_SystemServices",
+    "Win32_System_Threading",
+    "Win32_Storage_FileSystem",
+    "Win32_UI_Controls",
+    "Win32_UI_Controls_Dialogs",
+    "Win32_UI_HiDpi",
+    "Win32_UI_Input_KeyboardAndMouse",
+    "Win32_UI_Shell",
+    "Win32_UI_WindowsAndMessaging",
+] }
+
+[profile.release]
+opt-level = "s"        # 尺寸优先
+lto = true             # 全程序优化
+codegen-units = 1
+strip = true           # 剥离符号
+panic = "abort"        # 不生成 unwind 代码

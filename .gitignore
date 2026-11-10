@@ -1,0 +1,4 @@
+﻿.workbuddy/
+scaffold/target/
+*.pdb
+scaffold/res/*.png.bak
